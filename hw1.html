@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 1</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+<div class="header">
+    An In-Depth Explanation of Localized Weighted Regression, with a Python class implementation
+</div>
+
+<div class="content">
+    <p> What is Localized Weighted Regression, otherwise known as Lowess? In essence, Lowess calculates the expected value of the 
+        conditional expectation of an output <em>y</em> given that a certain input <em>X</em> is equal to a specific x value. Although 
+        Lowess does in many cases utilize linear regression and its regularized offsets (ex: Ridge) at a local level, it contrasts from these
+        forms of regression and is considered <strong>non-parametric</strong> because we cannot make any assumptions about the relationship
+        between input and output at a global scale within the dataset. 
+    </p>
+    <img src="./imgs/Lowess_Main.png" alt="Conditional expectation equation for Lowess">
+    
+    <p>Besides an input and output, Lowess also takes 2 additional things into account- a <em>kernel function</em> and a 
+        <em>tau value</em>.
+    </p>
+
+    <ul> Definitions
+        <li><strong>Kernel Function:</strong> A Kernel function is a function bound by specific values and 0 otherwise. Typically, 
+        kernel functions have a local maximum in the middle of the support window and taper towards 0 on the edges. One example is a Gaussian
+        (normal) distribution bounded on each side (equation below).</li>
+        <img src="./imgs/Gaussian.png" alt="Gaussian kernel equation">
+        <li><strong>Tau:</strong> The Tau value, otherwise known as the <em>bandwidth</em>, helps set a restriction on what the weight
+             values for your inputs can be.
+        </li>
+    </ul>
+
+    <p>In conjunction with each other, a kernel and bandwidth help create a matrix of weights. These weights are calculated by taking the
+        distance between one set of points and another, point by point. In practice (and especially in machine learning), this is often a training set and test set
+        of your inputs. The distance values, after being divided by the tau (hence restricting the <strong>bandwidth</strong>), are inputted
+        into the kernel. The local maximum of a kernel function represents points 0 units apart (i.e. the same point) and will produce higher weights, 
+        with larger distances (less similar points) tapering off in weight values as they're either on the edge or out of the bounds of the kernel 
+        (which reduces the weight to 0).
+    </p>
+
+    <img src="./imgs/Weights Flowchart.png">
+
+    <p>The weights reinforce the idea that we are looking for <strong>local</strong>, not global, relationships. A training point that has input values
+        similar to a testing point's input values is likely to have a strong ability to predict the test point's output. This is the case in basic 
+        regressions such as linear regression as well, but the key difference there is that if our X and y present a non-linear relationship, linear
+        regression fails because it attempts to treat every point as equally important to establishing a prediction for a specific point. Instead, we can
+        utilize linear regression within Lowess by fitting our weighted data to a linear model. This approach leads to a set of different linear
+        relationships throughout the data that can approximate an overall non-linear relationship, rather than simply one "line of best fit". It's
+        also for this reason that we begin to see a smoothing effect in Lowess models -- in this example, the end result would simply be a series of lines.
+    </p>
+    
+    <img src="./imgs/Linreg vs Lowreg.png">
+
+    <p>That's the theory behind Lowess. Here's the code! </p>
+
+    <pre class=" language-python"><code class="prism  language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+        <span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+        <span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>preprocessing <span class="token keyword">import</span> StandardScaler
+        <span class="token keyword">def</span> <span class="token function">myfunction</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            out <span class="token operator">=</span> np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> out
+        </code></pre>
+
+
+</div>
+</body>
+
+</html>
