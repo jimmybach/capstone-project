@@ -116,7 +116,7 @@ author:
   name             : "Jimmy Bach"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Junior at W&M studying Data Science and Public Health with an interest in modeling and advanced machine learning applications to public health"
-  location         : "Somewhere"
+  location         : "Williamsburg, VA, USA"
   email            : "jpbach@wm.edu"
   links:
     - label: "Email"
