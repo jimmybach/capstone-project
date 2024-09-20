@@ -117,11 +117,11 @@ author:
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Junior at W&M studying Data Science and Public Health with an interest in modeling and advanced machine learning applications to public health"
   location         : "Williamsburg, VA, USA"
-  email            : "jpbach@wm.edu"
+  #email            :
   links:
-    - label: "Email"
+    - label: "Email: jpbach@wm.edu"
       icon: "fas fa-fw fa-envelope-square"
-      url: "jpbach@wm.edu"
+      #url:
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
